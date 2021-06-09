@@ -1,0 +1,12 @@
+{% extends 'ebigay/navbar.html' %} {% load static %}
+{% block content %}
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {{citychoice.city}}
+    <button type="submit">submit</button>
+</form>
+
+
+
+{% endblock %}
