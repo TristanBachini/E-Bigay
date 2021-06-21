@@ -77,15 +77,14 @@ WSGI_APPLICATION = 'cs127.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'cs127',
-        'USER': 'root',
-        'PASSWORD': os.environ.get("DATABASE_PASSWORD"),
-        'PORT': 3306,
-        'HOST': '127.0.0.1',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'e-bigay',
+        'USER': 'postgres',
+        'PASSWORD': 'qlo0120',
+        'PORT': 5432,
+        # 'HOST': '127.0.0.1',
     }
 }
-
 
 
 # Password validation
@@ -134,8 +133,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'ebigay/static/ebigay/images')
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST_USER = "tristanbachinibackend@gmail.com"
+EMAIL_HOST_USER = "dummie9956@gmail.com"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_PASSWORD")
+EMAIL_HOST_PASSWORD = 'weakakoeh0120'

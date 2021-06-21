@@ -1,3 +1,145 @@
 {% extends 'ebigay/navbar.html' %} {% block content %} {% load static %}
-Mission page (goal,aims, mission, vision)
+<style>
+  .card {
+    width: 70%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    border: transparent;
+    background-color: #3b9677;
+    color: aliceblue;
+  }
+  .btn-custom {
+    background-color: #eab676;
+    width: 100%;
+    padding-top: 5%;
+  }
+  h1 {
+    margin-top: 5%;
+    text-decoration: underline;
+    text-decoration-color: #eab676;
+  }
+</style>
+
+<center>
+  <div class="card">
+    <div class="card-body">
+      <h1><i class="fas fa-bullseye"></i> Our Mission:</h1>
+      <h5>
+        E-bigay's mission is mainly to operate a community pantry in an online
+        setting.
+      </h5>
+      <h1><i class="fas fa-eye"></i> Our Vision:</h1>
+      <h5>
+        E-bigay's envision a community in which the most vulnerable people will
+        have the power to lift themselves in these hard times.
+      </h5>
+      <h1>Core Values</h1>
+      <div class="row">
+        <div class="col">
+          <button
+            class="btn btn-custom"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#multiCollapseExample1"
+            aria-expanded="false"
+            aria-controls="multiCollapseExample1"
+          >
+            <i class="fas fa-shield-alt"></i>
+            Integrity
+          </button>
+        </div>
+        <div class="col">
+          <button
+            class="btn btn-custom"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#multiCollapseExample2"
+            aria-expanded="false"
+            aria-controls="multiCollapseExample2"
+          >
+            <i class="fas fa-handshake"></i>
+            Respect
+          </button>
+        </div>
+        <div class="col">
+          <button
+            class="btn btn-custom"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#multiCollapseExample3"
+            aria-expanded="false"
+            aria-controls="multiCollapseExample3"
+          >
+            <i class="fas fa-tasks"></i>
+            Accountability
+          </button>
+        </div>
+        <div class="col">
+          <button
+            class="btn btn-custom"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#multiCollapseExample4"
+            aria-expanded="false"
+            aria-controls="multiCollapseExample4"
+          >
+            <i class="fas fa-rainbow"></i>
+            Creativity
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="collapse multi-collapse" id="multiCollapseExample1">
+            <div
+              class="card card-body"
+              style="width: fit-content; text-align: justify"
+            >
+              We maintain the highest standard of professional and ethical
+              behavior, value transparency and honesty in our communications,
+              relationship and actions through our online setting community.
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="collapse multi-collapse" id="multiCollapseExample2">
+            <div
+              class="card card-body"
+              style="width: fit-content; text-align: justify"
+            >
+              We value and celebrate the unique and diverse talents, experiences
+              and perspectives of everyone, and treat our participants,
+              partners, donors and each other with sensitivity and respect.
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="collapse multi-collapse" id="multiCollapseExample3">
+            <div
+              class="card card-body"
+              style="width: fit-content; text-align: justify"
+            >
+              We hold ourselves accountable for the quality and lasting results
+              of our work and for the commitments we make to our participants,
+              partners, donors and each other.
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="collapse multi-collapse" id="multiCollapseExample4">
+            <div
+              class="card card-body"
+              style="width: fit-content; text-align: justify"
+            >
+              We go beyond conventional ideas and approaches, so new
+              possibilities and innovation can flourish to ensure real and
+              lasting positive changes.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</center>
+
 {% endblock %}

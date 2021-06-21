@@ -1,19 +1,48 @@
-{% extends 'ebigay/navbar.html' %}
-{% load static %} 
-{% block content %}
+{% extends 'ebigay/navbar.html' %} {% load static %} {% block content %}
+<style>
+  .card {
+    width: fit-content;
+    background-color: rgb(231, 241, 250);
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
+  }
+  .col {
+    margin-bottom: 5%;
+    text-align: left;
+  }
+  .btn-custom {
+    background-color: #eab676;
+    padding-top: 2.5%;
+  }
+  #dob {
+    border-color: #eab676;
+  }
+</style>
 
 <form action="" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{form.user}}
-    {{form.name}}
-    {{form.dateofbirth}}
-    {{form.city}}
-    {{form.street1}}
-    {{form.street2}}
-    {{form.region}}
-    {{form.personid}}
-    <button type="submit">submit</button>
-</form>
+  {% csrf_token %}
+  <center>
+    <div class="card">
+      <div class="card-body">
+        <h3>Be a recipient!</h3>
+        {{form.user}}
+        <div class="col">{{form.name}}</div>
+        <div class="col" id="dob">Date of Birth: {{form.dateofbirth}}</div>
+        <div class="col">Address: {{form.city}}</div>
+        <div class="col">{{form.street1}}</div>
+        <div class="col">{{form.street2}}</div>
+        <div class="col">{{form.region}}</div>
 
+        <div class="col">Upload ID:</div>
+        <div class="col">{{form.personid}}</div>
+        <div class="col">
+          <button type="submit" class="btn btn-custom">submit</button>
+        </div>
+      </div>
+    </div>
+  </center>
+</form>
 
 {% endblock %}

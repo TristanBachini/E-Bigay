@@ -1,10 +1,36 @@
-{% extends 'ebigay/navbar.html' %}
-{% block content %}
-<div class="card" id="reg-form">
-    <div class="card-body">
-      <h3 style="color: white">Login to Vermin</h3>
-      <form action="" method="post">
-        {% csrf_token %}
+{% extends 'ebigay/navbar.html' %} {% block content %}
+<style>
+  .card {
+    width: fit-content;
+    background-color: rgb(231, 241, 250);
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
+  }
+  .col {
+    text-align: left;
+    margin-bottom: 5%;
+  }
+  .btn-custom {
+    background-color: #eab676;
+    padding-top: 5%;
+  }
+  a {
+    text-decoration: none;
+    color: black;
+  }
+  a:hover {
+    color: #eab676;
+  }
+</style>
+
+<form action="" method="post">
+  {% csrf_token %}
+  <center>
+    <div class="card">
+      <div class="card-body">
+        <h3 style="margin-bottom: 10%">Login to E-BIGAY</h3>
         <div class="row">
           <div class="col">
             <input
@@ -15,7 +41,6 @@
               placeholder="Enter Username"
               required
             />
-            <label for="floatingInput">Enter Username</label>
           </div>
         </div>
         <div class="row">
@@ -28,18 +53,18 @@
               placeholder="Enter Password"
               required
             />
-            <label for="floatingPassword">Enter Password</label>
           </div>
         </div>
-        <button
-          type="submit"
-          class="btn btn-outline-success"
-          style="color: white"
-        >
-          Sign In
-        </button>
+        <div class="col">
+          <button class="btn btn-custom" type="submit">Sign In</button>
+        </div>
+
         {% for message in messages %} {% if message.tags == 'success' %}
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <div
+          class="alert alert-success alert-dismissible fade show"
+          role="alert"
+          style="width: fit-content"
+        >
           <strong>Success!</strong> {{message | striptags}}
           <button
             type="button"
@@ -49,7 +74,11 @@
           ></button>
         </div>
         {% else %}
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <div
+          class="alert alert-danger alert-dismissible fade show"
+          role="alert"
+          style="width: fit-content"
+        >
           <strong>Error!</strong> {{message | striptags}}
           <button
             type="button"
@@ -59,13 +88,15 @@
           ></button>
         </div>
         {% endif %} {% endfor %}
-      </form>
+        <div class="col" style="margin-top: 5%">
+          Not registered yet?
+          <a href="{% url 'register-account' %}"
+            ><button class="btn btn-custom">Register Here</button></a
+          >
+        </div>
+      </div>
     </div>
-    <div class="card-body">
-      New to Vermin?
-      <a href="{% url 'register-account' %}"
-        ><button class="btn btn-outline-info">Register Here</button></a
-      >
-    </div>
-  </div>
-  {% endblock %}
+  </center>
+</form>
+
+{% endblock %}
