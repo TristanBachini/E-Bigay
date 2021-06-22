@@ -1,10 +1,33 @@
 {% extends 'ebigay/navbar.html' %} {% load static %}
 {% block content %}
+<style>
+    .card {
+    width: 20%;
+    background-color: rgb(231, 241, 250);
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
+  }
+  .btn-custom {
+    background-color: #eab676;
+    padding-top: 5%;
+    margin-top: 5%;
+    width: fit-content;
+  }
+</style>
 
 <form action="" method="POST">
     {% csrf_token %}
-    {{citychoice.city}}
-    <button type="submit">submit</button>
+    <center>
+        <div class="card card-body">
+            <h2>Please select a city drop-off:</h2>
+            {{citychoice.city}}
+            <button class="btn btn-custom" type="submit">
+                Submit
+            </button>
+        </div>
+    </center>
 </form>
 
 

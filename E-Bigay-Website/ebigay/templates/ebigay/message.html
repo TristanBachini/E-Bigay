@@ -1,4 +1,40 @@
 {% extends 'ebigay/navbar.html' %} {% block content %} {% load static %}
-Registration successful!
-<a href="{% url 'homepage' %}">Go back to home</a>
+<style>
+    .btn-custom {
+    background-color: #eab676;
+    width: 100%;
+    padding-top: 5%;
+  }
+</style>
+<center>
+    <div 
+        class="card card-body" 
+        style="
+        background-color: #3b9677; 
+        width: fit-content; 
+        margin-top: 5%;
+        padding: 2.5% 2.5% 2.5% 2.5%;
+        color: #eab676;
+        "
+    >
+        <h2>Registration successful!</h2>
+        <h2>You are now subscribed for Ayuda.</h2>
+        <button 
+            class="btn btn-custom"
+            style="
+            width: fit-content;
+            padding-top: 2.5%;
+            "
+        >
+        <i class="fas fa-arrow-left"></i>
+            <a href="{% url 'homepage' %}" 
+            style="
+            text-decoration: none; 
+            color: black;">
+            
+             Home
+            </a>
+        </button>
+    </div>
+</center>
 {% endblock %}

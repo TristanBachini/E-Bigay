@@ -116,7 +116,7 @@
                     >Dropoff List</a
                   >
                 </li>
-                {% endif %} {% if request.user|has_group:"AyudaApplicantGroup"%}
+                {% endif %} {% if request.user|has_group:"AyudaApplicantGroup" %}
                 <li>
                   <a class="dropdown-item" href="{% url 'ayuda-schedule' %}"
                     >Check Delivery Status</a
@@ -137,11 +137,13 @@
                 <li>
                   <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
                 </li>
+                {% if not request.user|has_group:"AyudaApplicantGroup" %}
                 <li>
                   <a class="dropdown-item" href="{% url 'register-ayuda' %}"
                     >Register for ayuda</a
                   >
                 </li>
+                {% endif %}
                 <li><hr class="dropdown-divider" /></li>
                 <li>
                   <a class="dropdown-item" href="{% url 'terms-of-service' %}"

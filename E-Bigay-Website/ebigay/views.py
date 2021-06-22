@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 from .views import *
 from django.contrib import messages
 from django.http import HttpResponse
@@ -11,33 +11,34 @@ from .forms import *
 from .decorators import *
 
 
-
 def homepage(request):
     return render(request, 'ebigay/homepage.html')
-
-
 
 
 @login_required(login_url='/login')
 def register_ayuda(request):
     if(request.method == 'POST'):
-        form = AyudaApplicantForm(request.POST,request.FILES)
+        form = AyudaApplicantForm(request.POST, request.FILES)
         if(form.is_valid()):
-            if(AyudaApplicant.objects.all().filter(user=request.user.id)):
-                return HttpResponse('You have already subscribed')
-            else:
-                form.save()
-                ayudaapplicant = Group.objects.get(name='AyudaApplicantGroup') 
-                ayudaapplicant.user_set.add(request.user.id)
-                return render(request,'ebigay/message.html')
+            form.save()
+            ayudaapplicant = Group.objects.get(name='AyudaApplicantGroup')
+            ayudaapplicant.user_set.add(request.user.id)
+            return render(request, 'ebigay/message.html')
+            # if(AyudaApplicant.objects.all().filter(user=request.user.id)):
+            #     return HttpResponse('You have already subscribed')
+            # else:
+            #     form.save()
+            #     ayudaapplicant = Group.objects.get(name='AyudaApplicantGroup')
+            #     ayudaapplicant.user_set.add(request.user.id)
+            #     return render(request,'ebigay/message.html')
         else:
             print(form.errors)
 
-
     form = AyudaApplicantForm({"user": request.user.id})
-    data = {"form":form}
+    data = {"form": form}
 
-    return render(request,'ebigay/register_ayuda.html',data)
+    return render(request, 'ebigay/register_ayuda.html', data)
+
 
 def register_account(request):
     form = UserForm()
@@ -66,17 +67,18 @@ def register_account(request):
                              form.cleaned_data.get("username"))
 
             return redirect('/login')
-    
-    data = {"form":form}
-    return render(request, "ebigay/register_account.html",data)
 
-@allowed_users(allowed_roles=['Driver'])  
+    data = {"form": form}
+    return render(request, "ebigay/register_account.html", data)
+
+
+@allowed_users(allowed_roles=['Driver'])
 @login_required(login_url='/login')
-def dropoff_list_delete(request,pk):
-    applicant = AyudaApplicant.objects.get(id = pk)
-    ayudaapplicantdelete=Group.objects.get(name='AyudaApplicantGroup')
+def dropoff_list_delete(request, pk):
+    applicant = AyudaApplicant.objects.get(id=pk)
+    ayudaapplicantdelete = Group.objects.get(name='AyudaApplicantGroup')
     ayudaapplicantdelete.user_set.remove(applicant.user_id)
-    ayudadropoffdelete=Group.objects.get(name='AyudaDropoffGroup')
+    ayudadropoffdelete = Group.objects.get(name='AyudaDropoffGroup')
     ayudadropoffdelete.user_set.remove(applicant.user_id)
     person = AyudaDropoff.objects.get(ayudaapplicant_id=pk)
     person.delete()
@@ -88,18 +90,19 @@ def dropoff_list_delete(request,pk):
 @allowed_users(allowed_roles=['AyudaApplicantGroup'])
 @login_required(login_url='/login')
 def ayuda_list_delete(request):
-    aperson = AyudaDropoff.objects.all().filter(user_id = request.user.id)
+    aperson = AyudaDropoff.objects.all().filter(user_id=request.user.id)
     aperson.delete()
-    person = AyudaApplicant.objects.all().filter(user_id = request.user.id)
+    person = AyudaApplicant.objects.all().filter(user_id=request.user.id)
     person.delete()
     if(request.user.groups.filter(name='AyudaApplicantGroup')):
-        ayudaapplicantdelete=Group.objects.get(name='AyudaApplicantGroup')
+        ayudaapplicantdelete = Group.objects.get(name='AyudaApplicantGroup')
         ayudaapplicantdelete.user_set.remove(request.user.id)
     if(request.user.groups.filter(name='AyudaDropoffGroup')):
-        ayudaapplicantdelete=Group.objects.get(name='AyudaDropoffGroup')
+        ayudaapplicantdelete = Group.objects.get(name='AyudaDropoffGroup')
         ayudaapplicantdelete.user_set.remove(request.user.id)
 
-    return redirect('')
+    return redirect('/register-ayuda')
+
 
 def login_page(request):
     if(request.method == "POST"):
@@ -118,10 +121,12 @@ def login_page(request):
 
     return render(request, 'ebigay/login.html')
 
+
 @login_required(login_url='/login')
 def logout_page(request):
     logout(request)
     return redirect('/login')
+
 
 @login_required(login_url='/login')
 def ayuda_dropoff(request):
@@ -129,31 +134,34 @@ def ayuda_dropoff(request):
         citychoice = CityForm(request.POST)
         if(citychoice.is_valid()):
             the_city = citychoice.cleaned_data.get('city')
-            eligible_people =  AyudaApplicant.objects.all().filter(city_id = the_city)
+            eligible_people = AyudaApplicant.objects.all().filter(city_id=the_city)
             for person in eligible_people:
-                
-                eligible_person = AyudaDropoffForm({"ayudaapplicant":person,"user":person.user_id})
+
+                eligible_person = AyudaDropoffForm(
+                    {"ayudaapplicant": person, "user": person.user_id})
                 if(eligible_person.is_valid()):
                     if(not AyudaDropoff.objects.all().filter(ayudaapplicant_id=person.id)):
-                        ayudadropoff = Group.objects.get(name='AyudaDropoffGroup') 
+                        ayudadropoff = Group.objects.get(
+                            name='AyudaDropoffGroup')
                         ayudadropoff.user_set.add(person.user_id)
                         eligible_person.save()
                 else:
                     print(eligible_person.errors)
-    
+
     citychoice = CityForm()
-    data = {"citychoice":citychoice}
+    data = {"citychoice": citychoice}
 
+    return render(request, 'ebigay/ayudadropoff.html', data)
 
-    return render(request, 'ebigay/ayudadropoff.html',data)
 
 @allowed_users(allowed_roles=['Driver'])
 @login_required(login_url='/login')
 def dropoff_list(request):
     people = AyudaDropoff.objects.all()
-    data = {"people":people}
+    data = {"people": people}
 
-    return render(request, 'ebigay/dropofflist.html',data)
+    return render(request, 'ebigay/dropofflist.html', data)
+
 
 @allowed_users(allowed_roles=['AyudaApplicantGroup'])
 @login_required(login_url='/login')
@@ -164,19 +172,22 @@ def ayuda_schedule(request):
     else:
         return render(request, 'ebigay/ayudanegative.html')
 
+
 def mission_vision(request):
     return render(request, 'ebigay/missionvision.html')
+
 
 def volounteer(request):
     return render(request, 'ebigay/volounteer.html')
 
+
 def story(request):
     return render(request, 'ebigay/story.html')
+
 
 def donate(request):
     return render(request, 'ebigay/donate.html')
 
+
 def terms_of_service(request):
     return render(request, 'ebigay/termsofservice.html')
-
-
