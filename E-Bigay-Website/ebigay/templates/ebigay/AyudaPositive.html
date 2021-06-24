@@ -1,4 +1,25 @@
-{% extends 'ebigay/navbar.html' %}
-{% block content %}
-Hello {{request.user.username}}! You can expect your ayuda to arrive by today or tomorrow. Thank you for using this platform!
+{% extends 'ebigay/navbar.html' %} {% load static %}{% block content %}
+<style>
+  .card {
+    width: 50%;
+    background-color: rgb(231, 241, 250);
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
+  }
+</style>
+<center>
+  <div class="card card-body">
+    <h2>Good day {{ request.user.username }}!</h2>
+    <h3 style="text-align: justify">
+      Your ayuda has been transferred to your designated rider. Expect the
+      delivery to be in the registered address and be sure to sign the form
+      given by the rider. Thank you!
+    </h3>
+    <center>
+      <img src="{% static 'ebigay/images/rider.gif' %}" alt="" width="100%" />
+    </center>
+  </div>
+</center>
 {% endblock %}

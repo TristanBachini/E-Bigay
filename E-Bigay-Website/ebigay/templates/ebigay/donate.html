@@ -1,3 +1,48 @@
 {% extends 'ebigay/navbar.html' %} {% block content %} {% load static %}
-Donation details (address to donate, gcash, etc)
+<style>
+  .card {
+    width: fit-content;
+    background-color: rgb(231, 241, 250);
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
+  }
+  h6 {
+    margin-bottom: 5%;
+  }
+  .btn-custom {
+    background-color: #eab676;
+    padding-top: 1.5%;
+    width: fit-content;
+  }
+</style>
+<center>
+  <h1 style="margin-top: 5%">Donation Details</h1>
+  <h5>
+    Here are the details of specific addresses where you can donate personally
+    or
+  </h5>
+  <h5>money donation thru GCASH.</h5>
+  <div class="card card-body">
+    <h2>Barangay Pasong Tamo</h2>
+    <h6>
+      Philand Drive, Diego Silang Street cor. Luzon Avenue, Area 2, Veterans
+      Village, Barangay Pasong Tamo, Quezon City 1107
+    </h6>
+    <h2>Barangay Tandang Sora</h2>
+    <h6>9 Don Jose Street, Tandang Sora, Quezon City, 1116</h6>
+    <h2>Donation thru GCASH</h2>
+    <center>
+      <div class="btn btn-custom">
+        <a
+          href="https://www.globe.com.ph/apps-content/gcash.html#gref"
+          target="_blank"
+          style="text-decoration: none; color: black"
+          >Click Here <i class="fas fa-arrow-right"></i
+        ></a>
+      </div>
+    </center>
+  </div>
+</center>
 {% endblock %}
