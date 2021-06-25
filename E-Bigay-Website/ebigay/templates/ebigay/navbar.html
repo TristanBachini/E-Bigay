@@ -43,6 +43,9 @@
       #noHover:hover {
         background-color: transparent;
       }
+      .bg-custom{
+        background-color: #eab676;
+      }
     </style>
     <script>
       function initMap() {
@@ -129,7 +132,7 @@
                     >Dropoff List</a
                   >
                 </li>
-                {% endif %} {% if request.user|has_group:"AyudaApplicantGroup" %}
+                {% endif %} {% if request.user|has_group:"AyudaApplicantGroup"%}
                 <li>
                   <a class="dropdown-item" href="{% url 'ayuda-schedule' %}"
                     >Check Delivery Status</a
@@ -191,5 +194,10 @@
       </div>
     </nav>
     {% block content %} {% endblock %}
+    <!-- <footer class="footer mt-auto py-3 bg-custom">
+      <div class="container">
+        <span class="text-muted">Muted text.</span>
+      </div>
+    </footer> -->
   </body>
 </html>
