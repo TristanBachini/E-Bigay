@@ -8,6 +8,10 @@
     padding-top: 2.5%;
     padding-bottom: 2.5%;
   }
+  #map{
+    width: 100%;
+    height: 400px;
+  }
 </style>
 <center>
   <div class="card card-body">
@@ -20,6 +24,11 @@
     <center>
       <img src="{% static 'ebigay/images/rider.gif' %}" alt="" width="100%" />
     </center>
+    <div id="map"></div>
   </div>
 </center>
+<script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmfnl7OMp_IirqfU-Ucdz8a7qfOJbD_pU&callback=initMap&libraries=&v=weekly"
+      async
+></script>
 {% endblock %}
